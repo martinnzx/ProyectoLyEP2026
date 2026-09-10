@@ -1,43 +1,37 @@
 import '../css/detallecliente.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
- 
+import useClientes from "../hooks/useClientes";
+
 const DetalleCliente = () => {
- const { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
+  const { loading, obtenerClientePorId, eliminarCliente: quitarCliente } = useClientes();
 
-  const [cliente, setCliente] = useState(null);
   const [mensaje, setMensaje] = useState("");
+  const [eliminando, setEliminando] = useState(false);
+  const cliente = obtenerClientePorId(id);
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/users/${id}`)
-      .then((res) => res.json())
-      .then((data) => setCliente(data));
-  }, [id]);
-
-  const eliminarCliente = async () => {
+  const manejarEliminacion = async () => {
     try {
-      const respuesta = await fetch(
-        `https://fakestoreapi.com/users/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      if (respuesta.ok) {
-        setMensaje("Cliente eliminado correctamente");
-
-        setTimeout(() => {
-          navigate("/clientes");
-        }, 2000);
-      }
-    } catch (error) {
+      setEliminando(true);
+      await quitarCliente(Number(id));
+      setMensaje("Cliente eliminado correctamente");
+      navigate("/clientes");
+    } catch {
       setMensaje("Error al eliminar cliente");
+    } finally {
+      setEliminando(false);
     }
   };
-  if (!cliente) {
+
+  if (loading) {
     return <h2>Cargando cliente...</h2>;
+  }
+
+  if (!cliente) {
+    return <h2>Cliente no encontrado.</h2>;
   }
 
   return (
@@ -45,7 +39,7 @@ const DetalleCliente = () => {
       <h1>Ficha del Cliente</h1>
       <p>Rol actual: {role}</p>
 
-      {mensaje && <p className = 'mensaje-eliminado'>{mensaje}</p>}
+      {mensaje && <p className="mensaje-eliminado">{mensaje}</p>}
 
       <p>
         <strong>ID:</strong> {cliente.id}
@@ -53,7 +47,7 @@ const DetalleCliente = () => {
 
       <p>
         <strong>Nombre:</strong>{" "}
-        {cliente.name.firstname} {cliente.name.lastname}
+        {cliente.name?.firstname} {cliente.name?.lastname}
       </p>
 
       <p>
@@ -67,19 +61,19 @@ const DetalleCliente = () => {
       <h2>Dirección</h2>
 
       <p>
-        <strong>Calle:</strong> {cliente.address.street}
+        <strong>Calle:</strong> {cliente.address?.street || "-"}
       </p>
 
       <p>
-        <strong>Número:</strong> {cliente.address.number}
+        <strong>Número:</strong> {cliente.address?.number || "-"}
       </p>
 
       <p>
-        <strong>Código Postal:</strong> {cliente.address.zipcode}
+        <strong>Código Postal:</strong> {cliente.address?.zipcode || "-"}
       </p>
 
       <p>
-        <strong>Ciudad:</strong> {cliente.address.city}
+        <strong>Ciudad:</strong> {cliente.address?.city || "-"}
       </p>
 
       <h2>Credenciales</h2>
@@ -93,8 +87,12 @@ const DetalleCliente = () => {
       </p>
 
       {role?.trim() === "Gerencia" && (
-        <button className='btn-eliminar'onClick={eliminarCliente}>
-          Eliminar Cliente
+        <button
+          className="btn-eliminar"
+          onClick={manejarEliminacion}
+          disabled={eliminando}
+        >
+          {eliminando ? "Eliminando..." : "Eliminar Cliente"}
         </button>
       )}
     </div>

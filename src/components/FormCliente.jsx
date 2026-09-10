@@ -1,9 +1,10 @@
 import '../css/formcliente.css'
 import { useState } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
-import clientesService from "../services/clientesService";
+import useClientes from "../hooks/useClientes";
 
 const FormCliente = () => {
+    const { crearCliente } = useClientes();
 
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
@@ -57,13 +58,10 @@ const FormCliente = () => {
 
             setLoading(true);
 
-            const respuesta =
-                await clientesService.crearCliente(
-                    nuevoCliente
-                );
+            const cliente = await crearCliente(nuevoCliente);
 
             setMensaje(
-                `Cliente creado correctamente. ID: ${respuesta.id}`
+                `Cliente creado correctamente. ID: ${cliente.id}`
             );
 
             setNombre("");
