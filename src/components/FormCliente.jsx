@@ -46,6 +46,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
          setError("El nombre debe tener al menos 3 caracteres.");
          return;
      }
+     if (ciudad.trim().length < 2) {
+         setError("La ciudad debe tener al menos 2 caracteres.");
+         return;
+     }
         const nuevoCliente = {
 
             email,
