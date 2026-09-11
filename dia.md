@@ -23,6 +23,6 @@ Archivo de especificaciones para implementación de mejora en docs/mejoras/spec_
 Archivo con el resultado de la implementación de la mejora en docs/mejoras/doc_04.md
 
 
-- 20261111 - Gallo Lucas Tiziano: Commit con mejora implementada referida a la validación preventiva y robusta del formulario de clientes (FormCliente.jsx), rama feature/validacion-clientes
+- 202609911 - Gallo Lucas Tiziano: Commit con mejora implementada referida a la validación preventiva y robusta del formulario de clientes (FormCliente.jsx), rama feature/validacion-clientes
 Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_05.md
 Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_05.md
