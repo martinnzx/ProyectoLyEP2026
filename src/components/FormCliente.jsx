@@ -32,6 +32,10 @@ const FormCliente = () => {
             setError("Complete todos los campos.");
 
             return;
+        } 
+        if (telefono.trim().length < 7) {
+            setError("El teléfono debe tener al menos 7 caracteres.");
+            return;
         }
 
         const nuevoCliente = {
