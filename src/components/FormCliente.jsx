@@ -37,6 +37,10 @@ const FormCliente = () => {
             setError("El teléfono debe tener al menos 7 caracteres.");
             return;
         }
+        if (isNaN(telefono.trim())) {
+         setError("El teléfono debe contener únicamente números.");
+         return;
+     }
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setError("Por favor, ingrese un formato de correo electrónico válido.");
