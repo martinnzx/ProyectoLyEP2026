@@ -34,6 +34,12 @@ const usuarios = [
     password: 'Admin123',
     nombre: 'Lourdes',
     sector: 'Gerencia'
+  },
+  {
+    email: 'cesar@gmail.com',
+    password: 'Admin123',
+    nombre: 'Cesar',
+    sector: 'Gerencia'
   }
 ]
 const login = (email, password, sector) => {
