@@ -18,6 +18,6 @@ Archivo de especificaciones para implementación de mejora en docs/mejoras/spec_
 Archivo con el resultado de la implementación de la mejora en docs/mejoras/doc_03.md
 
 
-- 20260911 - Usuario: Commit con mejora implementada referida a ocultar datos sensibles y contraseñas (Hallazgo H-007), rama feature/seguridad-datos-sensibles
+- 20260911 - Mamani Mariano Martin: Commit con mejora implementada referida a ocultar datos sensibles y contraseñas (Hallazgo H-007), rama feature/seguridad-datos-sensibles
 Archivo de especificaciones para implementación de mejora en docs/mejoras/spec_04.md
 Archivo con el resultado de la implementación de la mejora en docs/mejoras/doc_04.md
