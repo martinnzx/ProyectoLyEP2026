@@ -42,6 +42,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             setError("Por favor, ingrese un formato de correo electrónico válido.");
             return;
         }
+        if (nombre.trim().length < 3) {
+         setError("El nombre debe tener al menos 3 caracteres.");
+         return;
+     }
         const nuevoCliente = {
 
             email,
