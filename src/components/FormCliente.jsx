@@ -32,8 +32,28 @@ const FormCliente = () => {
             setError("Complete todos los campos.");
 
             return;
+        } 
+        if (telefono.trim().length < 7) {
+            setError("El teléfono debe tener al menos 7 caracteres.");
+            return;
         }
-
+        if (isNaN(telefono.trim())) {
+         setError("El teléfono debe contener únicamente números.");
+         return;
+     }
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError("Por favor, ingrese un formato de correo electrónico válido.");
+            return;
+        }
+        if (nombre.trim().length < 3) {
+         setError("El nombre debe tener al menos 3 caracteres.");
+         return;
+     }
+     if (ciudad.trim().length < 2) {
+         setError("La ciudad debe tener al menos 2 caracteres.");
+         return;
+     }
         const nuevoCliente = {
 
             email,
