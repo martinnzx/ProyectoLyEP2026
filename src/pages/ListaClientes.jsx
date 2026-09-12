@@ -8,15 +8,24 @@ const ListaClientes = () => {
   const { clientes, loading, error } = useClientes();
   const [busqueda, setBusqueda] = useState("");
 
-  const clientesFiltrados = clientes.filter(
-    (cliente) =>
-      (cliente.name?.lastname || "")
-        .toLowerCase()
-        .includes(busqueda.toLowerCase()) ||
-      (cliente.address?.city || "")
-        .toLowerCase()
-        .includes(busqueda.toLowerCase())
-  );
+  const clientesFiltrados = clientes.filter((cliente) => {
+    const termino = busqueda.toLowerCase().trim();
+    if (!termino) return true;
+
+    const nombre = (cliente.name?.firstname || "").toLowerCase();
+    const apellido = (cliente.name?.lastname || "").toLowerCase();
+    const nombreCompleto = `${nombre} ${apellido}`.trim();
+    const email = (cliente.email || "").toLowerCase();
+    const ciudad = (cliente.address?.city || "").toLowerCase();
+
+    return (
+      nombre.includes(termino) ||
+      apellido.includes(termino) ||
+      nombreCompleto.includes(termino) ||
+      email.includes(termino) ||
+      ciudad.includes(termino)
+    );
+  });
 
   if (loading) {
     return <h2>Cargando clientes...</h2>;
@@ -43,7 +52,8 @@ const ListaClientes = () => {
         <input
           className="buscador"
           type="text"
-          placeholder="Buscar por apellido o ciudad"
+          placeholder="Buscar por nombre, apellido, email o ciudad"
+          aria-label="Buscar clientes por nombre, apellido, email o ciudad"
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
         />
@@ -74,14 +84,14 @@ const ListaClientes = () => {
               <td>{cliente.id}</td>
 
               <td>
-                {cliente.name.firstname} {cliente.name.lastname}
+                {cliente.name?.firstname || "-"} {cliente.name?.lastname || ""}
               </td>
 
-              <td>{cliente.email}</td>
+              <td>{cliente.email || "-"}</td>
 
-              <td>{cliente.phone}</td>
+              <td>{cliente.phone || "-"}</td>
 
-              <td>{cliente.address.city}</td>
+              <td>{cliente.address?.city || "-"}</td>
 
               <td>
                 <Link
