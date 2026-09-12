@@ -31,3 +31,8 @@ Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_
 - 20260912 - Valentin Iriarte: Commit con mejora implementada referida a la búsqueda multi-campo y blindaje defensivo de clientes (Hallazgos H-003, H-007 y H-004), rama ValenIr/feature/busqueda-defensiva-clientes
 Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_06.md
 Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_06.md
+
+
+- 20260912 - Valentin Iriarte: Commit con mejora implementada referida a la maquetación semántica, limpieza de código muerto y resolución de deuda de ESLint (Hallazgos H-008, H-006 y H-011), rama ValenIr/feature/maquetacion-calidad-codigo
+Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_07.md
+Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_07.md
