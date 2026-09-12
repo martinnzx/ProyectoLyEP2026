@@ -111,9 +111,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 <Form.Group className="mb-3">
 
-                    <Form.Label>Nombre</Form.Label>
+                    <Form.Label htmlFor="cliente-nombre">Nombre</Form.Label>
 
                     <Form.Control
+                        id="cliente-nombre"
                         type="text"
                         value={nombre}
                         onChange={(e) =>
@@ -125,9 +126,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 <Form.Group className="mb-3">
 
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label htmlFor="cliente-email">Email</Form.Label>
 
                     <Form.Control
+                        id="cliente-email"
                         type="email"
                         value={email}
                         onChange={(e) =>
@@ -139,9 +141,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 <Form.Group className="mb-3">
 
-                    <Form.Label>Teléfono</Form.Label>
+                    <Form.Label htmlFor="cliente-telefono">Teléfono</Form.Label>
 
                     <Form.Control
+                        id="cliente-telefono"
                         type="text"
                         value={telefono}
                         onChange={(e) =>
@@ -153,9 +156,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 <Form.Group className="mb-3">
 
-                    <Form.Label>Ciudad</Form.Label>
+                    <Form.Label htmlFor="cliente-ciudad">Ciudad</Form.Label>
 
                     <Form.Control
+                        id="cliente-ciudad"
                         type="text"
                         value={ciudad}
                         onChange={(e) =>
@@ -186,6 +190,8 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 <Alert
                     className="mt-3"
                     variant="success"
+                    role="alert"
+                    aria-live="polite"
                 >
                     {mensaje}
                 </Alert>
@@ -196,6 +202,8 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 <Alert
                     className="mt-3"
                     variant="danger"
+                    role="alert"
+                    aria-live="assertive"
                 >
                     {error}
                 </Alert>
