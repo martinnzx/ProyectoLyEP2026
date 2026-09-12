@@ -41,3 +41,8 @@ Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_
 - 20260912 - Valentin Iriarte: Commit con mejora implementada referida a la accesibilidad web (WCAG 2.1 AA) en formulario de clientes y alertas de feedback (Sección 6.4 y Fase 4), rama ValenIr/feature/accesibilidad-formulario-alertas
 Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_08.md
 Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_08.md
+
+
+- 20260912 - Valentin Lozano: Commit con mejora implementada referida al rendimiento de renderizado React, memoización de contextos y cancelación asíncrona mediante AbortController (Hallazgos H-VL-001, H-VL-002 y H-VL-004), rama ValenLoz/feature/rendimiento-optimizacion-react
+Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_11.md
+Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_11.md
