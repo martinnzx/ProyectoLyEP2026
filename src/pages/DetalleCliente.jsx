@@ -2,11 +2,13 @@ import '../css/detallecliente.css'
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useClientes from "../hooks/useClientes";
+import useAutorizaciones from "../hooks/useAutorizaciones";
 
 const DetalleCliente = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const role = localStorage.getItem("role");
+  const { admin } = useAutorizaciones();
+  const role = admin?.sector;
   const { loading, obtenerClientePorId, eliminarCliente: quitarCliente } = useClientes();
 
   const [mensaje, setMensaje] = useState("");
