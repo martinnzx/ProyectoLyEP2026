@@ -1,0 +1,47 @@
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background-color: var(--color-background, #f9fafb);
+  border-radius: 8px;
+  margin: 2rem 0;
+  border: 1px dashed var(--color-border, #d1d5db);
+}
+
+.empty-state-icon {
+  color: var(--color-text-muted, #9ca3af);
+  margin-bottom: 1rem;
+}
+
+.empty-state-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text, #1f2937);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-message {
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #6b7280);
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state-btn {
+  background-color: var(--color-primary, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.empty-state-btn:hover {
+  background-color: var(--color-primary-dark, #2563eb);
+}
