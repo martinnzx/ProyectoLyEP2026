@@ -81,6 +81,7 @@ export const ClientesProvider = ({ children }) => {
         return () => {
             activo = false;
             controller.abort();
+            cargaClientes.current = null;
         };
     }, []);
 

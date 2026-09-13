@@ -55,3 +55,8 @@ Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_
 - 20260912 - Valentin Lozano: Commit con mejora implementada referida a la resiliencia de la interfaz mediante ErrorBoundary y optimización SEO en index.html (Hallazgos H-VL-009, H-VL-010 y H-VL-015), rama ValenLoz/feature/resiliencia-seo-html
 Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_09.md
 Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_09.md
+
+
+- 20260913 - Mamani Mariano Martin: Commit con mejora implementada referida a Estados Vacíos y Feedback Uniforme (UX) resolviendo el hallazgo H-014, rama feature/ux-estados-vacios
+Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_13.md
+Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_13.md
