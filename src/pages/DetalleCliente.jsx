@@ -2,6 +2,7 @@ import '../css/detallecliente.css'
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useClientes from "../hooks/useClientes";
+import EmptyState from "../components/EmptyState";
 import useAutorizaciones from "../hooks/useAutorizaciones";
 
 const DetalleCliente = () => {
@@ -33,7 +34,13 @@ const DetalleCliente = () => {
   }
 
   if (!cliente) {
-    return <h2>Cliente no encontrado.</h2>;
+    return (
+      <EmptyState 
+        titulo="Cliente no encontrado"
+        mensaje="El ID especificado no corresponde a ningún cliente registrado."
+        accion={{ texto: "Volver a la lista", onClick: () => navigate("/clientes") }}
+      />
+    );
   }
 
   return (

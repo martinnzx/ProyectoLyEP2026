@@ -3,6 +3,7 @@ import { useState, useDeferredValue, useMemo } from "react";
 import { Link } from "react-router-dom";
 import FormCliente from "../components/FormCliente";
 import useClientes from "../hooks/useClientes";
+import EmptyState from "../components/EmptyState";
 
 const ListaClientes = () => {
   const { clientes, loading, error } = useClientes();
@@ -67,6 +68,13 @@ const ListaClientes = () => {
 
       </div>
       <div className="tabla-responsive">
+        {clientesFiltrados.length === 0 ? (
+          <EmptyState 
+            titulo="No se encontraron clientes"
+            mensaje={`No pudimos encontrar resultados para "${busqueda}".`}
+            accion={ busqueda ? { texto: "Limpiar búsqueda", onClick: () => setBusqueda("") } : null }
+          />
+        ) : (
         <table className="tabla-clientes">
 
           <thead>
@@ -112,6 +120,7 @@ const ListaClientes = () => {
           </tbody>
 
         </table>
+        )}
       </div>
 
     </div>
