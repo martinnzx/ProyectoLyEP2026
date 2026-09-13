@@ -45,4 +45,7 @@ Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_
 
 - 20260912 - Valentin Lozano: Commit con mejora implementada referida a la arquitectura CSS con tokens de diseño, adaptabilidad responsive y aislamiento de estilos en Login (Hallazgos H-VL-005, H-VL-006, H-VL-008, H-VL-011, H-VL-012 y H-VL-013), rama ValenLoz/feature/responsive-arquitectura-css
 Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_10.md
-Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_10.md
+Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_10.md
+- 20260912 - Valentin Lozano: Commit con mejora implementada referida a la resiliencia de la interfaz mediante ErrorBoundary y optimización SEO en index.html (Hallazgos H-VL-009, H-VL-010 y H-VL-015), rama ValenLoz/feature/resiliencia-seo-html
+Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_09.md
+Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_09.md
