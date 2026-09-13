@@ -63,51 +63,53 @@ const ListaClientes = () => {
         </p>
 
       </div>
-      <table className="tabla-clientes">
+      <div className="tabla-responsive">
+        <table className="tabla-clientes">
 
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Teléfono</th>
-            <th>Ciudad</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          {clientesFiltrados.map((cliente) => (
-            <tr key={cliente.id}>
-
-              <td>{cliente.id}</td>
-
-              <td>
-                {cliente.name?.firstname || "-"} {cliente.name?.lastname || ""}
-              </td>
-
-              <td>{cliente.email || "-"}</td>
-
-              <td>{cliente.phone || "-"}</td>
-
-              <td>{cliente.address?.city || "-"}</td>
-
-              <td>
-                <Link
-                  className="btn-ficha"
-                  to={`/clientes/${cliente.id}`}
-                >
-                  Ver Ficha Completa
-                </Link>
-              </td>
-
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Ciudad</th>
+              <th>Acciones</th>
             </tr>
-          ))}
+          </thead>
 
-        </tbody>
+          <tbody>
 
-      </table>
+            {clientesFiltrados.map((cliente) => (
+              <tr key={cliente.id}>
+
+                <td>{cliente.id}</td>
+
+                <td>
+                  {cliente.name?.firstname || "-"} {cliente.name?.lastname || ""}
+                </td>
+
+                <td>{cliente.email || "-"}</td>
+
+                <td>{cliente.phone || "-"}</td>
+
+                <td>{cliente.address?.city || "-"}</td>
+
+                <td>
+                  <Link
+                    className="btn-ficha"
+                    to={`/clientes/${cliente.id}`}
+                  >
+                    Ver Ficha Completa
+                  </Link>
+                </td>
+
+              </tr>
+            ))}
+
+          </tbody>
+
+        </table>
+      </div>
 
     </div>
   );
