@@ -43,6 +43,9 @@ Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_
 Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_08.md
 
 
+- 20260912 - Valentin Lozano: Commit con mejora implementada referida a la configuración de infraestructura de testing automatizado con Vitest y Testing Library (Hallazgos H-018, H-VL-016 y Acción A-007), rama ValenLoz/feature/infraestructura-testing
+Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_12.md
+Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_12.md
 - 20260912 - Valentin Lozano: Commit con mejora implementada referida al rendimiento de renderizado React, memoización de contextos y cancelación asíncrona mediante AbortController (Hallazgos H-VL-001, H-VL-002 y H-VL-004), rama ValenLoz/feature/rendimiento-optimizacion-react
 Archivo de especificaciones para implementación de mejora en Docs/mejoras/spec_11.md
 Archivo con el resultado de la implementación de la mejora en Docs/mejoras/doc_11.md

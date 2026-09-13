@@ -3,7 +3,8 @@ import axios from "axios";
 const URL = "https://fakestoreapi.com/users";
 
 const obtenerClientes = async (signal) => {
-    const respuesta = await axios.get(URL, { signal });
+    const config = signal ? { signal } : undefined;
+    const respuesta = await axios.get(URL, config);
     return respuesta.data;
 };
 
