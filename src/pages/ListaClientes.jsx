@@ -1,5 +1,5 @@
 import "../css/listaclientes.css"
-import { useState } from "react";
+import { useState, useDeferredValue, useMemo } from "react";
 import { Link } from "react-router-dom";
 import FormCliente from "../components/FormCliente";
 import useClientes from "../hooks/useClientes";
@@ -7,25 +7,28 @@ import useClientes from "../hooks/useClientes";
 const ListaClientes = () => {
   const { clientes, loading, error } = useClientes();
   const [busqueda, setBusqueda] = useState("");
+  const busquedaDiferida = useDeferredValue(busqueda);
 
-  const clientesFiltrados = clientes.filter((cliente) => {
-    const termino = busqueda.toLowerCase().trim();
-    if (!termino) return true;
+  const clientesFiltrados = useMemo(() => {
+    const termino = busquedaDiferida.toLowerCase().trim();
+    if (!termino) return clientes;
 
-    const nombre = (cliente.name?.firstname || "").toLowerCase();
-    const apellido = (cliente.name?.lastname || "").toLowerCase();
-    const nombreCompleto = `${nombre} ${apellido}`.trim();
-    const email = (cliente.email || "").toLowerCase();
-    const ciudad = (cliente.address?.city || "").toLowerCase();
+    return clientes.filter((cliente) => {
+      const nombre = (cliente.name?.firstname || "").toLowerCase();
+      const apellido = (cliente.name?.lastname || "").toLowerCase();
+      const nombreCompleto = `${nombre} ${apellido}`.trim();
+      const email = (cliente.email || "").toLowerCase();
+      const ciudad = (cliente.address?.city || "").toLowerCase();
 
-    return (
-      nombre.includes(termino) ||
-      apellido.includes(termino) ||
-      nombreCompleto.includes(termino) ||
-      email.includes(termino) ||
-      ciudad.includes(termino)
-    );
-  });
+      return (
+        nombre.includes(termino) ||
+        apellido.includes(termino) ||
+        nombreCompleto.includes(termino) ||
+        email.includes(termino) ||
+        ciudad.includes(termino)
+      );
+    });
+  }, [clientes, busquedaDiferida]);
 
   if (loading) {
     return <h2>Cargando clientes...</h2>;
