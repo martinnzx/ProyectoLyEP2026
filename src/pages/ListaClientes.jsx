@@ -1,5 +1,5 @@
 import "../css/listaclientes.css"
-import { useState } from "react";
+import { useState, useDeferredValue, useMemo } from "react";
 import { Link } from "react-router-dom";
 import FormCliente from "../components/FormCliente";
 import useClientes from "../hooks/useClientes";
@@ -7,25 +7,28 @@ import useClientes from "../hooks/useClientes";
 const ListaClientes = () => {
   const { clientes, loading, error } = useClientes();
   const [busqueda, setBusqueda] = useState("");
+  const busquedaDiferida = useDeferredValue(busqueda);
 
-  const clientesFiltrados = clientes.filter((cliente) => {
-    const termino = busqueda.toLowerCase().trim();
-    if (!termino) return true;
+  const clientesFiltrados = useMemo(() => {
+    const termino = busquedaDiferida.toLowerCase().trim();
+    if (!termino) return clientes;
 
-    const nombre = (cliente.name?.firstname || "").toLowerCase();
-    const apellido = (cliente.name?.lastname || "").toLowerCase();
-    const nombreCompleto = `${nombre} ${apellido}`.trim();
-    const email = (cliente.email || "").toLowerCase();
-    const ciudad = (cliente.address?.city || "").toLowerCase();
+    return clientes.filter((cliente) => {
+      const nombre = (cliente.name?.firstname || "").toLowerCase();
+      const apellido = (cliente.name?.lastname || "").toLowerCase();
+      const nombreCompleto = `${nombre} ${apellido}`.trim();
+      const email = (cliente.email || "").toLowerCase();
+      const ciudad = (cliente.address?.city || "").toLowerCase();
 
-    return (
-      nombre.includes(termino) ||
-      apellido.includes(termino) ||
-      nombreCompleto.includes(termino) ||
-      email.includes(termino) ||
-      ciudad.includes(termino)
-    );
-  });
+      return (
+        nombre.includes(termino) ||
+        apellido.includes(termino) ||
+        nombreCompleto.includes(termino) ||
+        email.includes(termino) ||
+        ciudad.includes(termino)
+      );
+    });
+  }, [clientes, busquedaDiferida]);
 
   if (loading) {
     return <h2>Cargando clientes...</h2>;
@@ -63,51 +66,53 @@ const ListaClientes = () => {
         </p>
 
       </div>
-      <table className="tabla-clientes">
+      <div className="tabla-responsive">
+        <table className="tabla-clientes">
 
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Teléfono</th>
-            <th>Ciudad</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          {clientesFiltrados.map((cliente) => (
-            <tr key={cliente.id}>
-
-              <td>{cliente.id}</td>
-
-              <td>
-                {cliente.name?.firstname || "-"} {cliente.name?.lastname || ""}
-              </td>
-
-              <td>{cliente.email || "-"}</td>
-
-              <td>{cliente.phone || "-"}</td>
-
-              <td>{cliente.address?.city || "-"}</td>
-
-              <td>
-                <Link
-                  className="btn-ficha"
-                  to={`/clientes/${cliente.id}`}
-                >
-                  Ver Ficha Completa
-                </Link>
-              </td>
-
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Ciudad</th>
+              <th>Acciones</th>
             </tr>
-          ))}
+          </thead>
 
-        </tbody>
+          <tbody>
 
-      </table>
+            {clientesFiltrados.map((cliente) => (
+              <tr key={cliente.id}>
+
+                <td>{cliente.id}</td>
+
+                <td>
+                  {cliente.name?.firstname || "-"} {cliente.name?.lastname || ""}
+                </td>
+
+                <td>{cliente.email || "-"}</td>
+
+                <td>{cliente.phone || "-"}</td>
+
+                <td>{cliente.address?.city || "-"}</td>
+
+                <td>
+                  <Link
+                    className="btn-ficha"
+                    to={`/clientes/${cliente.id}`}
+                  >
+                    Ver Ficha Completa
+                  </Link>
+                </td>
+
+              </tr>
+            ))}
+
+          </tbody>
+
+        </table>
+      </div>
 
     </div>
   );

@@ -11,6 +11,7 @@ const Login = () => {
   const [errores, setErrores] = useState({})
   const { setAdmin } = useAutorizaciones()
   const navigate = useNavigate()
+
   const validar = () => {
     const nuevosErrores = {}
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -36,6 +37,7 @@ const Login = () => {
     setErrores(nuevosErrores)
     return Object.keys(nuevosErrores).length === 0
   }
+
   const manejarSubmit = (e) => {
     e.preventDefault()
     if (!validar()) return
@@ -45,7 +47,7 @@ const Login = () => {
       sector
     )
     if (!usuario) {
-     alert('Verifique los datos')
+      alert('Verifique los datos')
       return
     }
     localStorage.setItem("role", usuario.sector)
@@ -56,32 +58,80 @@ const Login = () => {
     })
     navigate('/')
   }
+
   return (
-    <div className="login-container">
-      <h1>Iniciar Sesión</h1>
-      <form onSubmit={manejarSubmit}>
-        <label>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <p style={{ color: 'red', minHeight: '18px' }}>
-          {errores.email || ' '}
+    <section className="login-container" aria-labelledby="titulo-login">
+      <h1 id="titulo-login">Iniciar Sesión</h1>
+      <form className="login-form" onSubmit={manejarSubmit} noValidate>
+        <label htmlFor="login-email" className="login-label">
+          Email:
+        </label>
+        <input
+          id="login-email"
+          className="login-input"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          aria-describedby="error-login-email"
+        />
+        <p
+          id="error-login-email"
+          className="login-error"
+          role="alert"
+          aria-live="polite"
+        >
+          {errores.email || ''}
         </p>
-        <label>Contraseña:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <p style={{ color: 'red', minHeight: '18px' }}>
-          {errores.password || ' '}
+
+        <label htmlFor="login-password" className="login-label">
+          Contraseña:
+        </label>
+        <input
+          id="login-password"
+          className="login-input"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          aria-describedby="error-login-password"
+        />
+        <p
+          id="error-login-password"
+          className="login-error"
+          role="alert"
+          aria-live="polite"
+        >
+          {errores.password || ''}
         </p>
-        <label>Sector:</label>
-        <select value={sector} onChange={(e) => setSector(e.target.value)}>
+
+        <label htmlFor="login-sector" className="login-label">
+          Sector:
+        </label>
+        <select
+          id="login-sector"
+          className="login-select"
+          value={sector}
+          onChange={(e) => setSector(e.target.value)}
+          aria-describedby="error-login-sector"
+        >
           <option value="">Seleccione un sector</option>
           <option value="Soporte">Soporte</option>
           <option value="Gerencia">Gerencia</option>
         </select>
-        <p style={{ color: 'red', minHeight: '18px' }}>
-          {errores.sector || ' '}
+        <p
+          id="error-login-sector"
+          className="login-error"
+          role="alert"
+          aria-live="polite"
+        >
+          {errores.sector || ''}
         </p>
-        <button type="submit">Ingresar</button>
+
+        <button type="submit" className="login-button">
+          Ingresar
+        </button>
       </form>
-    </div>
+    </section>
   )
 }
+
 export default Login

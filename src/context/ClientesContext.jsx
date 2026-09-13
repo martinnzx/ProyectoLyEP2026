@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import clientesService from "../services/clientesService";
 import ClientesContext from "./ClientesContextDefinition";
 
@@ -42,9 +42,10 @@ export const ClientesProvider = ({ children }) => {
 
     useEffect(() => {
         let activo = true;
+        const controller = new AbortController();
 
         if (!cargaClientes.current) {
-            cargaClientes.current = clientesService.obtenerClientes();
+            cargaClientes.current = clientesService.obtenerClientes(controller.signal);
         }
 
         cargaClientes.current
@@ -66,8 +67,8 @@ export const ClientesProvider = ({ children }) => {
                     };
                 });
             })
-            .catch(() => {
-                if (activo) {
+            .catch((err) => {
+                if (activo && err.name !== "CanceledError" && err.name !== "AbortError") {
                     setError("Error al cargar los clientes.");
                 }
             })
@@ -79,12 +80,13 @@ export const ClientesProvider = ({ children }) => {
 
         return () => {
             activo = false;
+            controller.abort();
         };
     }, []);
 
-    const clientes = combinarClientes(estado);
+    const clientes = useMemo(() => combinarClientes(estado), [estado]);
 
-    const crearCliente = async (datos) => {
+    const crearCliente = useCallback(async (datos) => {
         const siguienteId = Math.max(
             estado.ultimoId,
             mayorId(estado.clientesRemotos),
@@ -102,9 +104,9 @@ export const ClientesProvider = ({ children }) => {
         }));
 
         return cliente;
-    };
+    }, [estado.ultimoId, estado.clientesRemotos, estado.clientesLocales, estado.idsEliminados]);
 
-    const eliminarCliente = async (id) => {
+    const eliminarCliente = useCallback(async (id) => {
         await clientesService.eliminarCliente(id);
 
         setEstado((estadoActual) => ({
@@ -116,24 +118,28 @@ export const ClientesProvider = ({ children }) => {
                 ? estadoActual.idsEliminados
                 : [...estadoActual.idsEliminados, Number(id)]
         }));
-    };
+    }, []);
 
-    const obtenerClientePorId = (id) =>
-        clientes.find((cliente) => idNumerico(cliente) === Number(id));
+    const obtenerClientePorId = useCallback((id) =>
+        clientes.find((cliente) => idNumerico(cliente) === Number(id)),
+        [clientes]
+    );
+
+    const value = useMemo(
+        () => ({
+            clientes,
+            loading,
+            error,
+            crearCliente,
+            eliminarCliente,
+            obtenerClientePorId
+        }),
+        [clientes, loading, error, crearCliente, eliminarCliente, obtenerClientePorId]
+    );
 
     return (
-        <ClientesContext.Provider
-            value={{
-                clientes,
-                loading,
-                error,
-                crearCliente,
-                eliminarCliente,
-                obtenerClientePorId
-            }}
-        >
+        <ClientesContext.Provider value={value}>
             {children}
         </ClientesContext.Provider>
     );
 };
-
