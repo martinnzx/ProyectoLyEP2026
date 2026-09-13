@@ -1,64 +1,106 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+  --color-primary: #d63384;
+  --color-primary-dark: #c2185b;
+  --color-primary-accent: #e75480;
+  --color-primary-light: #ffd6e7;
+  --color-primary-soft: #ffe3ef;
+  --color-primary-subtle: #fff7fa;
+  --color-primary-hover: #ffeef5;
+  --color-primary-border: #f4b6cf;
+  --color-primary-shadow-sm: rgba(214, 51, 132, 0.10);
+  --color-primary-shadow-md: rgba(214, 51, 132, 0.12);
+  --color-primary-shadow-lg: rgba(214, 51, 132, 0.20);
+  
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #4a3845;
+  --color-text-muted: #6c757d;
+  --color-bg-body: #f5f7fb;
+  --color-bg-card: #ffffff;
+  
+  --color-error: #dc3545;
+  --color-error-dark: #bb2d3b;
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-success-border: #b8dfc2;
+  
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-pill: 30px;
+  
+  --shadow-sm: 0px 8px 20px var(--color-primary-shadow-sm);
+  --shadow-md: 0px 10px 25px var(--color-primary-shadow-md);
+  --shadow-lg: 0px 15px 35px var(--color-primary-shadow-lg);
+  
+  --transition-fast: 0.25s ease;
+  --transition-normal: 0.3s ease;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-body);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 main {
-    flex: 1;
-}
-h1{
-    color:#d63384;
-    font-weight:700;
-    margin-bottom:25px;
+  flex: 1;
 }
 
-h2{
-    color:#c2185b;
-    margin-bottom:20px;
+h1 {
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 25px;
 }
 
-h3{
-    color:#e75480;
+h2 {
+  color: var(--color-primary-dark);
+  margin-bottom: 20px;
 }
 
-a{
-    text-decoration:none;
+h3 {
+  color: var(--color-primary-accent);
 }
 
-hr{
-    border:none;
-    height:2px;
-    background:#ffd6e7;
-    margin:35px 0;
+a {
+  text-decoration: none;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: var(--color-primary-light);
+  margin: 35px 0;
 }
 
 h1,
 h2,
-h3{
-    letter-spacing:.3px;
+h3 {
+  letter-spacing: 0.3px;
 }
 
 button:hover,
-.btn:hover{
-    cursor:pointer;
+.btn:hover {
+  cursor: pointer;
 }
 
 input,
 select,
 button,
 .btn,
-table a{
-    transition:.25s;
+table a {
+  transition: var(--transition-fast);
 }
 
-::selection{
-    background:#d63384;
-    color:white;
+::selection {
+  background: var(--color-primary);
+  color: white;
 }
-
